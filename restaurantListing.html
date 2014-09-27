@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Basic Restaurant Info Collator</title>
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div id="form-container" style="margin:20px">
+			<form method="get" action="scripts/getZomatoResults.py" target="zomato_results">
+				<div class="form-group">
+					<label for="inputRestaurantName">Restaurant Name</label>
+					<input type="text" class="form-control" id="inputRestaurantName" placeholder="Pizza Hut" name="inputRestaurantName">
+				</div>
+				<div class="form-group">
+					<label for="inputRestaurantCity">City</label>
+					<input type="text" class="form-control" id="inputRestaurantCity" placeholder="Mumbai" name="inputRestaurantCity">
+				</div>
+				<button type="submit" class="btn btn-primary" onclick="getBurrpResults()">Find</button>
+			</form>
+		</div>
+		<script type="text/javascript" language="JavaScript">
+		<!-- 
+			function getBurrpResults(){
+				window.parent.frames['burrp_results'].location.href = 	"scripts/getZomatoResults.py?inputRestaurantName="+document.getElementById("inputRestaurantName").value+
+																		"&inputRestaurantCity="+document.getElementById("inputRestaurantCity").value;
+			}
+		-->
+		</script>
+	</body>
+</html>
