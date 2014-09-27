@@ -7,7 +7,7 @@ print 'HTTP/1.1 200 OK'
 print 'Content-type: text/html'
 print
 print
-print '<HTML><HEAD><TITLE>Restaurant Info Collator</TITLE></HEAD>'
+print '<HTML><HEAD><TITLE>Results from Zomato</TITLE></HEAD>'
 print '<BODY>'
 
 conn = httplib.HTTPSConnection('www.zomato.com')
@@ -16,8 +16,10 @@ httpresponse = conn.getresponse()
 
 respString = httpresponse.read()
 
+# To make the regex parsing easy, I'll consolidate everything into a single line 
 respString = respString.replace("\n","")
 respString = respString.replace("\r","")
+
 regExp = re.search(r'<section id="search-results-container">.*</section>', respString)
 if regExp:
 
@@ -29,14 +31,13 @@ if regExp:
 			addrLine = ''
 			costLine = ''
 			voteLine = ''
+			rvwLine  = ''
 			
 			# Extract the Name
 			nameMatch = re.search(r"<h3.*?>\s*?<a.*?>(.*?)</a>\s*?</h3>", listing)
 			if nameMatch:
 				nameLine = '<h3>'+nameMatch.group(1)+'</h3>'
-			else:
-				print '<textarea>'+listing+'</textarea>'
-			
+						
 			# Extract the Address
 			addrMatch = re.search(r'<span class="search-result-address".*?>(.*?)</span>',listing)
 			if addrMatch:
