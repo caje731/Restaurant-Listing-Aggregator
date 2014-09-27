@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<div id="form-container" style="margin:20px">
-			<form method="get" action="scripts/getZomatoResults.py" target="zomato_results">
+			<form >
 				<div class="form-group">
 					<label for="inputRestaurantName">Restaurant Name</label>
 					<input type="text" class="form-control" id="inputRestaurantName" placeholder="Pizza Hut" name="inputRestaurantName">
@@ -18,12 +18,25 @@
 					<label for="inputRestaurantCity">City</label>
 					<input type="text" class="form-control" id="inputRestaurantCity" placeholder="Mumbai" name="inputRestaurantCity">
 				</div>
-				<button type="submit" class="btn btn-primary" onclick="getBurrpResults()">Find</button>
+				<button type="button" class="btn btn-primary" onclick="getResults()">Find</button>
 			</form>
 		</div>
 		<script type="text/javascript" language="JavaScript">
 		<!-- 
-			function getBurrpResults(){
+			function getResults(){
+			
+				if(document.getElementById('inputRestaurantName').value.length===0){
+					alert('Restaurant Name is empty !');
+					return;
+				}
+				
+				if(document.getElementById('inputRestaurantCity').value.length===0){
+					alert('Restaurant City is empty !');
+					return;
+				}
+				window.parent.frames['zomato_results'].location.href = 	"scripts/getZomatoResults.py?inputRestaurantName="+document.getElementById("inputRestaurantName").value+
+																		"&inputRestaurantCity="+document.getElementById("inputRestaurantCity").value;
+				
 				window.parent.frames['burrp_results'].location.href = 	"scripts/getBurrpResults.py?inputRestaurantName="+document.getElementById("inputRestaurantName").value+
 																		"&inputRestaurantCity="+document.getElementById("inputRestaurantCity").value;
 			}
